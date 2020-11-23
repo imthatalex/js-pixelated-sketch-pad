@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/main.css">
+        <title>Etch-a-Sketch</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="textContainer"></div>
+            <div id="gridContainer"></div>
+        </div>
+        <script>
+        
+        const gridContainer = document.getElementById('gridContainer');
+        const textContainer = document.getElementById('textContainer');
+        let pixels = 256;
+        let color= '#000';
+
+        const beginButton = document.createElement('button');
+        beginButton.classList.add('button');
+        beginButton.textContent = 'Begin!';
+        textContainer.appendChild(beginButton);
+
+        const tenBy10Button = document.createElement('button');
+        tenBy10Button.classList.add('button');
+        tenBy10Button.textContent = '10 x 10';
+        textContainer.appendChild(tenBy10Button);
+
+        const twentyBy20Button = document.createElement('button');
+        twentyBy20Button.classList.add('button');
+        twentyBy20Button.textContent = '20 x 20';
+        textContainer.appendChild(twentyBy20Button);
+
+        const thirtyBy30Button = document.createElement('button');
+        thirtyBy30Button.classList.add('button');
+        thirtyBy30Button.textContent = '30 x 30';
+        textContainer.appendChild(thirtyBy30Button);
+
+        const changePixelsButton = document.createElement('button');
+        changePixelsButton.classList.add('button');
+        changePixelsButton.textContent = 'Custom Grid';
+        textContainer.appendChild(changePixelsButton);
+
+        const clearButton = document.createElement('button');
+        clearButton.classList.add('button');
+        clearButton.textContent = 'Clear';
+        textContainer.appendChild(clearButton);
+
+        const rainbowFillButton = document.createElement('button');
+        rainbowFillButton.classList.add('button');
+        rainbowFillButton.textContent = 'Rainbow';
+        textContainer.appendChild(rainbowFillButton);
+
+        const chooseColorButton = document.createElement('button');
+        chooseColorButton.classList.add('button');
+        chooseColorButton.textContent = 'Choose Color';
+        textContainer.appendChild(chooseColorButton);
+
+        function createPixels(){
+                for(let k=0; k<pixels;k++) {
+                    const gridElement = document.createElement('div');
+                    gridElement.classList.add('gridElement');
+                    gridContainer.style.gridTemplateColumns = 'repeat(16, 1fr)';
+                    gridContainer.style.gridTemplateRows = 'repeat(16, 1fr)';
+                    gridContainer.appendChild(gridElement);
+                }
+            }  
+
+        createPixels();
+
+        function changePixels(){
+            let userPrompt = prompt();
+            if(userPrompt < 100){
+                let grid = getSqRoot(userPrompt);
+                console.log(grid);
+                gridContainer.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
+                gridContainer.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
+            }
+            else alert('Please select a value less than 100');
+        }
+
+
+        function begin(){
+            gridContainer.addEventListener('mouseover', defaultFill, true);
+        }
+
+          function clearGrid(){
+            let elements = document.getElementsByClassName('gridElement');
+            for(let i=0; i<elements.length;i++){
+                elements[i].style.backgroundColor = 'transparent';
+            } 
+        }
+
+        function chooseColor(){
+            gridContainer.removeEventListener('mouseover', rainbowFill, true);
+            gridContainer.addEventListener('mouseover', defaultFill, true);
+            alert('You may enter colors such as: Blue, #FFF, and rgb(255,0,0)');
+            let userPrompt = prompt();
+            color = userPrompt;
+        }
+
+             
+        function defaultFill(e) {
+            if (e.target.matches('.gridElement')) {
+                console.log(e.target);
+                e.target.style.backgroundColor = color;
+            }
+        }
+
+        function rainbowFill(e){
+            if (e.target.matches('.gridElement')) {
+                console.log(e.target);
+                e.target.style.backgroundColor = getRandomRgb();
+            }
+        }
+
+        function getSqRoot(num){
+            return Math.floor(Math.sqrt(num));
+        }
+
+        function replaceListener(){
+            gridContainer.removeEventListener('mouseover', defaultFill, false);
+            gridContainer.addEventListener('mouseover', rainbowFill, true);
+        }
+
+        function getRandomRgb() {
+            var num = Math.round(0xffffff * Math.random());
+            var r = num >> 16;
+            var g = num >> 8 & 255;
+            var b = num & 255;
+            return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+        }
+
+        beginButton.addEventListener('click', begin);
+        rainbowFillButton.addEventListener('click',replaceListener);
+        changePixelsButton.addEventListener('click', changePixels); 
+        clearButton.addEventListener('click', clearGrid);
+        chooseColorButton.addEventListener('click', chooseColor);
+        
+        </script>
+    </body>
+</html>
