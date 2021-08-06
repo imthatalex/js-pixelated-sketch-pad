@@ -102,6 +102,14 @@
             gridContainer.addEventListener('mouseover',defaultFill);
             pixels = 256;
             createPixels(16,16);
+            color = "#000"
+        }
+
+         function defaultFill(e) {
+            if (e.target.matches('.gridElement')) {
+                console.log(e.target);
+                e.target.style.backgroundColor = color;
+            }
         }
 
         function chooseColor(){
@@ -112,12 +120,6 @@
             color = userPrompt;
         }
 
-        function defaultFill(e) {
-            if (e.target.matches('.gridElement')) {
-                console.log(e.target);
-                e.target.style.backgroundColor = "#000";
-            }
-        }
 
 
         function rainbowFill(e){
