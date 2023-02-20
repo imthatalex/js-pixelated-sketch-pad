@@ -1,33 +1,38 @@
 body {
     background-color: #000;
+    color: #FFF;
+    text-align: center;
+}
+
+#info {
+    padding-top: 10px;
 }
 
 #container {
     display: flex;
     justify-content: center;
-    margin-top: 90px;
+    margin: auto;
 }
 
 #textContainer {
     display: flex;
     flex-direction: column;
     width: 30vh;
-    margin-right: 15px;
+    height: 500px;
+    margin: auto;
+    gap: 10px;
 }
 
 #gridContainer {
     display: grid;
     height: 500px;
-    width: 500px;
-    margin-left: 15px;
+    width: 70%;
+    margin: auto;
     background-color: #fff;
-    border: 3px solid #2d47b9;
 }
 
 .button {
     padding: 20px;
-    margin: 5px 0px;
-    border-radius: 25px;
     background-color: #35d760;
     border: none;
     color: #fff;
@@ -39,4 +44,38 @@ body {
 .button:hover {
     cursor: pointer;
     background-color: #1e883e;
+}
+
+@media screen and (max-width: 1000px){
+    #gridContainer {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #container {
+        flex-direction: column;
+    }
+
+    #gridContainer {
+        width: 90%;
+    }
+
+    #textContainer {
+        height: 100%;
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding-bottom: 15px;
+    }
+
+    .button {
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .button {
+        padding: 8px;
+    }
 }
