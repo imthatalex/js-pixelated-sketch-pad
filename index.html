@@ -105,7 +105,7 @@
             color = "#000"
         }
 
-         function defaultFill(e) {
+        function defaultFill(e) {
             if (e.target.matches('.gridElement')) {
                 console.log(e.target);
                 e.target.style.backgroundColor = color;
@@ -130,8 +130,8 @@
         }
 
         function replaceListener(){
-           gridContainer.removeEventListener('mouseover', defaultFill, false);
-           gridContainer.addEventListener('mouseover', rainbowFill, true);
+            gridContainer.removeEventListener('mouseover', defaultFill, false);
+            gridContainer.addEventListener('mouseover', rainbowFill, true);
         }
 
 
