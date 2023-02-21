@@ -68,12 +68,12 @@ function createPixels(x, y) {
                 gridElement.style.backgroundColor = color;
             })
             gridElement.addEventListener('mouseover', (event) => {
+                // if primary button is held down
                 if (event.buttons === 1) {
                     gridElement.style.backgroundColor = color;
                 }
             })
 
-            // add event listener to change pixel background color on touch screen devices
             // add touch event listener to change pixel background color on touch screen devices
             gridElement.addEventListener('touchstart', (event) => {
                 event.preventDefault(); // prevent scrolling on touch devices
@@ -83,8 +83,11 @@ function createPixels(x, y) {
 
             gridContainer.addEventListener('touchmove', (event) => {
                 event.preventDefault(); // prevent scrolling on touch devices
+                // points to the touch objects in the touches array, stores the first object touched
                 const touch = event.touches[0];
+                // uses method elementFromPoint to gather the coordinates of the touch element
                 const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                // if the touch element at specified coordinates has className gridElement change backgroundColor
                 if (targetElement && targetElement.classList.contains('gridElement')) {
                     targetElement.style.backgroundColor = color;
                     console.log('moved');
@@ -101,6 +104,23 @@ function createPixels(x, y) {
                         gridElement.style.backgroundColor = getRandomRgb();
                     }
                 })
+
+                // add touch event listener to change pixel background color on touch screen devices
+                gridElement.addEventListener('touchstart', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    gridElement.style.backgroundColor = getRandomRgb();;
+                    console.log('touched');
+                });
+
+                gridContainer.addEventListener('touchmove', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    const touch = event.touches[0];
+                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (targetElement && targetElement.classList.contains('gridElement')) {
+                        targetElement.style.backgroundColor = getRandomRgb();;
+                        console.log('moved');
+                    }
+                });
             })
 
             // change backgroundColor to color value
@@ -113,6 +133,23 @@ function createPixels(x, y) {
                         gridElement.style.backgroundColor = color;
                     }
                 })
+
+                // add touch event listener to change pixel background color on touch screen devices
+                gridElement.addEventListener('touchstart', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    gridElement.style.backgroundColor = color;
+                    console.log('touched');
+                });
+
+                gridContainer.addEventListener('touchmove', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    const touch = event.touches[0];
+                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (targetElement && targetElement.classList.contains('gridElement')) {
+                        targetElement.style.backgroundColor = color;
+                        console.log('moved');
+                    }
+                });
             })
 
             // change backgroundColor to color value
@@ -125,6 +162,23 @@ function createPixels(x, y) {
                         gridElement.style.backgroundColor = color;
                     }
                 })
+
+                // add touch event listener to change pixel background color on touch screen devices
+                gridElement.addEventListener('touchstart', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    gridElement.style.backgroundColor = color;
+                    console.log('touched');
+                });
+
+                gridContainer.addEventListener('touchmove', (event) => {
+                    event.preventDefault(); // prevent scrolling on touch devices
+                    const touch = event.touches[0];
+                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (targetElement && targetElement.classList.contains('gridElement')) {
+                        targetElement.style.backgroundColor = color;
+                        console.log('moved');
+                    }
+                });
             })
 
             // create grid
