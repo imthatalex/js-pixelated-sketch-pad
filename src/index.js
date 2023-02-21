@@ -54,6 +54,26 @@ function getRandomRgb() {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+// handle touch events
+function handleTouch(gridElement, color) {
+    gridElement.addEventListener('touchstart', (event) => {
+        event.preventDefault(); // prevent scrolling on touch devices
+        gridElement.style.backgroundColor = color;
+    });
+
+    gridElement.addEventListener('touchmove', (event) => {
+        event.preventDefault(); // prevent scrolling on touch devices
+        // points to the touch objects in the touches array, stores the first object touched
+        const touch = event.touches[0];
+        // uses method elementFromPoint to gather the coordinates of the touch element
+        const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+        // if the touch element at specified coordinates has className gridElement change backgroundColor
+        if (targetElement && targetElement.classList.contains('gridElement')) {
+            targetElement.style.backgroundColor = color;
+        }
+    });
+}
+
 // render pixels to DOM
 function createPixels(x, y) {
     gridStatus.textContent = 'Grid Loading...';
@@ -76,25 +96,7 @@ function createPixels(x, y) {
                 }
             })
 
-            // add touch event listener to change pixel background color on touch screen devices
-            gridElement.addEventListener('touchstart', (event) => {
-                event.preventDefault(); // prevent scrolling on touch devices
-                gridElement.style.backgroundColor = color;
-                console.log('touched');
-            });
-
-            gridContainer.addEventListener('touchmove', (event) => {
-                event.preventDefault(); // prevent scrolling on touch devices
-                // points to the touch objects in the touches array, stores the first object touched
-                const touch = event.touches[0];
-                // uses method elementFromPoint to gather the coordinates of the touch element
-                const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
-                // if the touch element at specified coordinates has className gridElement change backgroundColor
-                if (targetElement && targetElement.classList.contains('gridElement')) {
-                    targetElement.style.backgroundColor = color;
-                    console.log('moved');
-                }
-            });
+            handleTouch(gridElement, color);
 
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
@@ -107,22 +109,7 @@ function createPixels(x, y) {
                     }
                 })
 
-                // add touch event listener to change pixel background color on touch screen devices
-                gridElement.addEventListener('touchstart', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    gridElement.style.backgroundColor = getRandomRgb();;
-                    console.log('touched');
-                });
-
-                gridContainer.addEventListener('touchmove', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    const touch = event.touches[0];
-                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
-                    if (targetElement && targetElement.classList.contains('gridElement')) {
-                        targetElement.style.backgroundColor = getRandomRgb();;
-                        console.log('moved');
-                    }
-                });
+                handleTouch(gridElement, getRandomRgb());
             })
 
             // change backgroundColor to color value
@@ -136,22 +123,7 @@ function createPixels(x, y) {
                     }
                 })
 
-                // add touch event listener to change pixel background color on touch screen devices
-                gridElement.addEventListener('touchstart', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    gridElement.style.backgroundColor = color;
-                    console.log('touched');
-                });
-
-                gridContainer.addEventListener('touchmove', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    const touch = event.touches[0];
-                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
-                    if (targetElement && targetElement.classList.contains('gridElement')) {
-                        targetElement.style.backgroundColor = color;
-                        console.log('moved');
-                    }
-                });
+                handleTouch(gridElement, color);
             })
 
             // change backgroundColor to color value
@@ -164,23 +136,7 @@ function createPixels(x, y) {
                         gridElement.style.backgroundColor = color;
                     }
                 })
-
-                // add touch event listener to change pixel background color on touch screen devices
-                gridElement.addEventListener('touchstart', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    gridElement.style.backgroundColor = color;
-                    console.log('touched');
-                });
-
-                gridContainer.addEventListener('touchmove', (event) => {
-                    event.preventDefault(); // prevent scrolling on touch devices
-                    const touch = event.touches[0];
-                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
-                    if (targetElement && targetElement.classList.contains('gridElement')) {
-                        targetElement.style.backgroundColor = color;
-                        console.log('moved');
-                    }
-                });
+                handleTouch(gridElement, color);
             })
 
             // create grid
@@ -193,6 +149,15 @@ function createPixels(x, y) {
     }, 2);
 }
 
+// attached touch event to all grids
+gridContainer.addEventListener('touchmove', (event) => {
+    event.preventDefault(); // prevent scrolling on touch devices
+    const touch = event.touches[0];
+    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (targetElement && targetElement.classList.contains('gridElement')) {
+        targetElement.style.backgroundColor = color;
+    }
+});
 
 
 // change pixels based on userInput
@@ -237,7 +202,7 @@ function resetGrid() {
     console.log('Resetting Values...');
     let elements = document.getElementsByClassName('gridElement');
     for (let i = 0; i < elements.length; i++) {
-        elements[i].style.backgroundColor = 'transparent';
+        elements[i].style.backgroundColor = '#FFF';
     }
     console.log('Values Reset');
     gridStatus.textContent = '';
