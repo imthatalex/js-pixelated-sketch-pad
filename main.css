@@ -9,7 +9,15 @@ body {
 }
 
 #container {
+    display: -webkit-box;
+    /* Safari */
+    display: -ms-flexbox;
+    /* IE */
     display: flex;
+    -webkit-box-pack: center;
+    /* Safari */
+    -ms-flex-pack: center;
+    /* IE */
     justify-content: center;
     margin: auto;
 }
@@ -54,6 +62,12 @@ body {
 
 @media screen and (max-width: 800px){
     #container {
+        -webkit-box-orient: vertical;
+        /* Safari */
+        -webkit-box-direction: normal;
+        /* Safari */
+        -ms-flex-direction: column;
+        /* IE */
         flex-direction: column;
     }
 
