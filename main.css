@@ -55,6 +55,10 @@ body {
     background-color: #fff;
 }
 
+.gridElement {
+    touch-action: none;
+}
+
 .button {
     padding: 20px;
     background-color: #35d760;
