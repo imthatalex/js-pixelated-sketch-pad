@@ -12,18 +12,28 @@ body {
     display: -webkit-box;
     /* Safari */
     display: -ms-flexbox;
-    /* IE */
+    /* IE 10 */
     display: flex;
     -webkit-box-pack: center;
     /* Safari */
     -ms-flex-pack: center;
-    /* IE */
+    /* IE 10 */
     justify-content: center;
     margin: auto;
 }
 
 #textContainer {
+    display: -webkit-box;
+    /* Safari */
+    display: -ms-flexbox;
+    /* IE 10 */
     display: flex;
+    -webkit-box-orient: vertical;
+    /* Safari */
+    -webkit-box-direction: normal;
+    /* Safari */
+    -ms-flex-direction: column;
+    /* IE 10 */
     flex-direction: column;
     width: 30vh;
     height: 500px;
@@ -54,20 +64,20 @@ body {
     background-color: #1e883e;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
     #gridContainer {
         width: 60%;
     }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
     #container {
         -webkit-box-orient: vertical;
         /* Safari */
         -webkit-box-direction: normal;
         /* Safari */
         -ms-flex-direction: column;
-        /* IE */
+        /* IE 10 */
         flex-direction: column;
     }
 
