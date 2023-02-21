@@ -1,7 +1,7 @@
 // declare core DOM elements
 const gridContainer = document.getElementById('gridContainer');
 const textContainer = document.getElementById('textContainer');
-const status = document.getElementById('status');
+const gridStatus = document.getElementById('status');
 
 // declare global core variables
 let pixels;
@@ -54,7 +54,7 @@ function getRandomRgb() {
 
 // render pixels to DOM
 function createPixels(x, y) {
-    status.textContent = 'Grid Loading...';
+    gridStatus.textContent = 'Grid Loading...';
     // set time out to allow for textContent to render before rendering pixels
     setTimeout(() => {
         console.log('Creating Pixels...');
@@ -114,7 +114,7 @@ function createPixels(x, y) {
             gridContainer.appendChild(gridElement);
         }
         console.log('Pixels Created');
-        status.textContent = 'Grid Ready';
+        gridStatus.textContent = 'Grid Ready';
     }, 2);
 }
 

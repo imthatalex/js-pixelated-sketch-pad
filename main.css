@@ -20,6 +20,7 @@ body {
     /* IE 10 */
     justify-content: center;
     margin: auto;
+    border: 1px solid red;
 }
 
 #textContainer {
@@ -39,6 +40,7 @@ body {
     height: 500px;
     margin: auto;
     gap: 10px;
+    border: 1px solid blue;
 }
 
 #gridContainer {
@@ -49,6 +51,7 @@ body {
     width: 70%;
     margin: auto;
     background-color: #fff;
+    border: 1px solid green;
 }
 
 .button {
