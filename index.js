@@ -73,16 +73,19 @@ function createPixels(x, y) {
                 }
             })
 
-            // add touch event listener to change pixel background color on touch screen devices
-            gridElement.addEventListener('touchstart', () => {
-                gridElement.style.backgroundColor = color;
-                console.log('touched');
-            })
-            gridElement.addEventListener('touchmove', (event) => {
-                event.preventDefault(); // prevent scrolling on touch devices
-                gridElement.style.backgroundColor = color;
-                console.log('moved')
-            })
+            // add event listener to change pixel background color on touch screen devices
+            document.addEventListener('touchstart', function (e) {
+                if (e.target.classList.contains('gridElement')) {
+                    e.target.style.backgroundColor = color;
+                }
+            });
+
+            document.addEventListener('touchmove', function (e) {
+                if (e.target.classList.contains('gridElement')) {
+                    e.target.style.backgroundColor = color;
+                    e.preventDefault(); // prevent scrolling on touch devices
+                }
+            });
 
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
