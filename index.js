@@ -78,16 +78,18 @@ function createPixels(x, y) {
             gridElement.addEventListener('touchstart', (event) => {
                 event.preventDefault(); // prevent scrolling on touch devices
                 gridElement.style.backgroundColor = color;
+                console.log('touched');
             });
 
-            gridElement.addEventListener('touchmove', (event) => {
+            gridContainer.addEventListener('touchmove', (event) => {
                 event.preventDefault(); // prevent scrolling on touch devices
-                let touch = event.touches[0];
-                let element = document.elementFromPoint(touch.clientX, touch.clientY);
-                if (element === gridElement) {
-                    gridElement.style.backgroundColor = color;
+                const touch = event.touches[0];
+                const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (targetElement && targetElement.classList.contains('gridElement')) {
+                    targetElement.style.backgroundColor = color;
+                    console.log('moved');
                 }
-            }, { passive: false });
+            });
 
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
