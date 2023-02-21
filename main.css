@@ -42,6 +42,8 @@ body {
 }
 
 #gridContainer {
+    /* IE 10 */
+    display: -ms-grid;
     display: grid;
     height: 500px;
     width: 70%;
