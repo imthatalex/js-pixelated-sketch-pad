@@ -72,6 +72,16 @@ function createPixels(x, y) {
                     gridElement.style.backgroundColor = color;
                 }
             })
+
+            // add touch event listener to change pixel background color on touch screen devices
+            gridElement.addEventListener('touchstart', () => {
+                gridElement.style.backgroundColor = color;
+            })
+            gridElement.addEventListener('touchmove', (event) => {
+                event.preventDefault(); // prevent scrolling on touch devices
+                gridElement.style.backgroundColor = color;
+            })
+
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
                 gridElement.addEventListener('mousedown', () => {
