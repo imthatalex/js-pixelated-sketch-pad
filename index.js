@@ -87,7 +87,7 @@ function createPixels(x, y) {
                 if (element === gridElement) {
                     gridElement.style.backgroundColor = color;
                 }
-            });
+            }, { passive: false });
 
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
