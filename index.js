@@ -74,16 +74,18 @@ function createPixels(x, y) {
             })
 
             // add event listener to change pixel background color on touch screen devices
-            document.addEventListener('touchstart', function (e) {
-                if (e.target.classList.contains('gridElement')) {
-                    e.target.style.backgroundColor = color;
-                }
+            // add touch event listener to change pixel background color on touch screen devices
+            gridElement.addEventListener('touchstart', (event) => {
+                event.preventDefault(); // prevent scrolling on touch devices
+                gridElement.style.backgroundColor = color;
             });
 
-            document.addEventListener('touchmove', function (e) {
-                if (e.target.classList.contains('gridElement')) {
-                    e.target.style.backgroundColor = color;
-                    e.preventDefault(); // prevent scrolling on touch devices
+            gridElement.addEventListener('touchmove', (event) => {
+                event.preventDefault(); // prevent scrolling on touch devices
+                let touch = event.touches[0];
+                let element = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (element === gridElement) {
+                    gridElement.style.backgroundColor = color;
                 }
             });
 
