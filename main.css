@@ -104,6 +104,12 @@ body {
     }
 }
 
+@media screen and (max-width: 800px){
+    #gridContainer {
+        height: 350px;
+    }
+}
+
 @media screen and (max-width: 380px) {
     .button {
         padding: 8px;
