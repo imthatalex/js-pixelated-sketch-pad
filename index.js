@@ -63,15 +63,7 @@ function createPixels(x, y) {
             const gridElement = document.createElement('div');
             gridElement.classList.add('gridElement');
 
-            // add event listener to change pixel background color
-            gridElement.addEventListener('mousedown', () => {
-                gridElement.style.backgroundColor = color;
-            })
-            gridElement.addEventListener('mouseover', (event) => {
-                if (event.buttons === 1) {
-                    gridElement.style.backgroundColor = color;
-                }
-            })
+
 
             // add event listener to change pixel background color on touch screen devices
             // add touch event listener to change pixel background color on touch screen devices
