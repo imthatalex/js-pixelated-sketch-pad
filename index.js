@@ -188,7 +188,9 @@ function resetGrid() {
 function chooseColor() {
     alert('You may enter colors such as: Blue, #FFF, and rgb(255,0,0)');
     let userPrompt = prompt();
-    color = userPrompt;
+    if (userPrompt) {
+        color = userPrompt;
+    }
 }
 
 
