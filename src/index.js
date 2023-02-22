@@ -74,6 +74,9 @@ function handleTouch(gridElement, color) {
     });
 }
 
+// state for rainbowColor
+let isRainbow = false;
+
 // render pixels to DOM
 function createPixels(x, y) {
     gridStatus.textContent = 'Grid Loading...';
@@ -89,6 +92,7 @@ function createPixels(x, y) {
             gridElement.addEventListener('mousedown', () => {
                 gridElement.style.backgroundColor = color;
             })
+
             gridElement.addEventListener('mouseover', (event) => {
                 // if primary button is held down
                 if (event.buttons === 1) {
@@ -100,6 +104,7 @@ function createPixels(x, y) {
 
             // add event listener to change pixel backgroundColor to randomColor
             rainbowFillButton.addEventListener('click', () => {
+                isRainbow = true;
                 gridElement.addEventListener('mousedown', () => {
                     gridElement.style.backgroundColor = getRandomRgb();
                 })
@@ -109,14 +114,17 @@ function createPixels(x, y) {
                     }
                 })
 
-                handleTouch(gridElement, getRandomRgb());
+                handleTouch(gridElement, getRandomRgb);
             })
 
             // change backgroundColor to color value
             resetButton.addEventListener('click', () => {
+                isRainbow = false;
+
                 gridElement.addEventListener('mousedown', () => {
                     gridElement.style.backgroundColor = color;
                 })
+
                 gridElement.addEventListener('mouseover', (event) => {
                     if (event.buttons === 1) {
                         gridElement.style.backgroundColor = color;
@@ -128,14 +136,17 @@ function createPixels(x, y) {
 
             // change backgroundColor to color value
             chooseColorButton.addEventListener('click', () => {
+
                 gridElement.addEventListener('mousedown', () => {
                     gridElement.style.backgroundColor = color;
                 })
+
                 gridElement.addEventListener('mouseover', (event) => {
                     if (event.buttons === 1) {
                         gridElement.style.backgroundColor = color;
                     }
                 })
+
                 handleTouch(gridElement, color);
             })
 
@@ -155,7 +166,12 @@ gridContainer.addEventListener('touchmove', (event) => {
     const touch = event.touches[0];
     const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
     if (targetElement && targetElement.classList.contains('gridElement')) {
-        targetElement.style.backgroundColor = color;
+        if (isRainbow) {
+            targetElement.style.backgroundColor = getRandomRgb();
+        }
+        else {
+            targetElement.style.backgroundColor = color;
+        }
     }
 });
 
@@ -211,6 +227,7 @@ function resetGrid() {
 
 // allows user to select own color for fill
 function chooseColor() {
+    isRainbow = false;
     alert('You may enter colors such as: Blue, #FFF, and rgb(255,0,0)');
     let userPrompt = prompt();
     let validateColor = tinycolor(userPrompt);
